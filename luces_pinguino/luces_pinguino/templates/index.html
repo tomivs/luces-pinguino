@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load staticfiles %}
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Control de Luces | Inicio</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/starter-template.css" %}" rel="stylesheet">
+    
+    <style>.grayscale { filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale"); }</style>
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Control de Luz</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Inicio</a></li>
+            <!--li><a href="/config">Configuración</a></li-->
+            <li><a href="/acerca">Acerca de</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <!--h1>Control de Luz</h1-->
+        <div class="well well-lg">
+           <h4>Presione para cambiar el estado de la luz:</h4>
+            {% if quiere_hackear %}
+            <!--div class="alert alert-danger" role="alert">
+                <strong>¡Lo sentimos!</strong> Deja de "hackear" e inténtalo de nuevo.
+            </div>
+            <div class="alert alert-danger" role="alert">
+                <strong>¡Lo sentimos!</strong> Ha ocurrido un error interno del servidor. Inténtalo de nuevo más tarde.
+            </div-->
+            {% endif %}
+
+            <form action="" method="POST" id="form-bombillo">
+                {% csrf_token %}
+                {% if encendido %}
+                <input class="estado" type="hidden" name="estado" value="si">
+                {% else %}
+                <input class="estado" type="hidden" name="estado" value="no">
+                {% endif %}
+                <!--input type="submit" class="btn btn-primary btn-lg" value="Agregar Cuenta"-->
+            </form>
+            
+            {% if encendido %}
+            <img id="bombillo" src="{% static "img/bombillo.png" %}" width="200">
+            {% else %}
+            <img id="bombillo" src="{% static "img/bombillo-apagado.png" %}" width="200">
+            <!--img id="bombillo" src="{% static "img/bombillo.png" %}" width="200" class="grayscale"-->
+            {% endif %}
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script-->
+    <script src="{% static "js/jquery-1.11.2.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.form-agregar {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
