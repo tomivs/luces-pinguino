@@ -9,5 +9,6 @@ urlpatterns = [
     # url(r'^admin/', include(admin.site.urls)),
     
     url(r'^$', 'luces_pinguino.views.home', name='home'),
+    url(r'^ajax/', 'luces_pinguino.views.ajax', name='ajax'),
     url(r'^acerca/', 'luces_pinguino.views.acerca', name='acerca'),
 ]

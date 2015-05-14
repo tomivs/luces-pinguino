@@ -59,22 +59,13 @@
             </div-->
             {% endif %}
 
-            <form action="" method="POST" id="form-bombillo">
+            <form action="" id="formbombillo" method="POST" id="form-bombillo">
                 {% csrf_token %}
-                {% if encendido %}
-                <input class="estado" type="hidden" name="estado" value="si">
-                {% else %}
-                <input class="estado" type="hidden" name="estado" value="no">
-                {% endif %}
-                <!--input type="submit" class="btn btn-primary btn-lg" value="Agregar Cuenta"-->
+                <input id="estado" type="hidden" name="estado" value="{% if encendido %}si{% else %}no{% endif %}">
             </form>
             
-            {% if encendido %}
-            <img id="bombillo" src="{% static "img/bombillo.png" %}" width="200">
-            {% else %}
-            <img id="bombillo" src="{% static "img/bombillo-apagado.png" %}" width="200">
-            <!--img id="bombillo" src="{% static "img/bombillo.png" %}" width="200" class="grayscale"-->
-            {% endif %}
+            <img id="bombillo" src="{% if encendido %}{% static "img/bombillo.png" %}{% else %}{% static "img/bombillo-apagado.png" %}{% endif %}" width="200">
+
         </div>
       </div>
 
@@ -85,6 +76,10 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script-->
+    <script>
+      var img_on = "{% static "img/bombillo.png" %}";
+      var img_off = "{% static "img/bombillo-apagado.png" %}";
+    </script>
     <script src="{% static "js/jquery-1.11.2.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>

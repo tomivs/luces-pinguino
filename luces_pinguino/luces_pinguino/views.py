@@ -6,8 +6,14 @@ from django.template import RequestContext
 from forms import LucesForm
 import json, socket, sys
 
-
 def home(request):
+   encendido = json.loads(open("luces_pinguino/encendido.json").read())
+   ctx = {
+   'encendido' : encendido[0]
+   }
+   return render_to_response('index.html', ctx, context_instance=RequestContext(request))
+
+def ajax(request):
    quiere_hackear = False
    encendido = [0]
    
@@ -64,13 +70,12 @@ def home(request):
          print "Hubo un error al intentar leer el archivo de configuracion:"
          print "La excepcion original es:"
          raise e
+   ctx = {
+      'encendido' : encendido[0]
+   }
+   return render_to_response('ajax.html', ctx, context_instance=RequestContext(request))
       
 
-   ctx = {
-   'encendido' : encendido[0],
-   'quiere_hackear' : quiere_hackear
-   }
-   return render_to_response('index.html', ctx, context_instance=RequestContext(request))
 
 def acerca(request):
    ctx = {
