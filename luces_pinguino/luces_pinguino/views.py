@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from forms import LucesForm
-import json, socket, sys
+import json, socket, sys, datetime
 
 def home(request):
    encendido = json.loads(open("luces_pinguino/encendido.json").read())
@@ -24,7 +24,10 @@ def ajax(request):
       ip = x_forwarded_for.split(',')[0]
    else:
       ip = request.META.get('REMOTE_ADDR')
-   print ip
+   
+   tiempo_actual = datetime.datetime.now()
+   
+   print '|| %s ---- %s ||' % (ip, tiempo_actual)
    
    if request.method == 'POST':
       form = LucesForm(request.POST)
